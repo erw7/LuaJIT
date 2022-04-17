@@ -94,7 +94,8 @@ static const char *clib_check_lds(lua_State *L, const char *buf)
 /* Quick and dirty solution to resolve shared library name from ld script. */
 static const char *clib_resolve_lds(lua_State *L, const char *name)
 {
-  FILE *fp = fopen(name, "r");
+  global_State *g = G(L);
+  FILE *fp = g->fopenf(name, "r");
   const char *p = NULL;
   if (fp) {
     char buf[256];

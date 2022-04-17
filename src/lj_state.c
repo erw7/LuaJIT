@@ -230,6 +230,13 @@ LUA_API lua_State *lua_newstate(lua_Alloc allocf, void *allocd)
   g->allocf = allocf;
   g->allocd = allocd;
   g->prng = prng;
+#if LJ_TARGET_POSIX
+  g->fopenf = fopen;
+  g->popenf = popen;
+#else
+  g->fopenf = _fopen;
+  g->popenf = _popen;
+#endif
 #ifndef LUAJIT_USE_SYSMALLOC
   if (allocf == lj_alloc_f) {
     lj_alloc_setprng(allocd, &g->prng);

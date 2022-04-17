@@ -11,6 +11,7 @@
 
 #include <stdarg.h>
 #include <stddef.h>
+#include <stdio.h>
 
 
 #include "luaconf.h"
@@ -65,6 +66,10 @@ typedef int (*lua_Writer) (lua_State *L, const void* p, size_t sz, void* ud);
 ** prototype for memory-allocation functions
 */
 typedef void * (*lua_Alloc) (void *ud, void *ptr, size_t osize, size_t nsize);
+
+typedef FILE * (*lua_Fopen) (const char *fname, const char *mode);
+
+typedef FILE * (*lua_Popen) (const char *cmd, const char *type);
 
 
 /*
@@ -245,6 +250,9 @@ LUA_API void  (lua_concat) (lua_State *L, int n);
 LUA_API lua_Alloc (lua_getallocf) (lua_State *L, void **ud);
 LUA_API void lua_setallocf (lua_State *L, lua_Alloc f, void *ud);
 
+LUA_API void lua_setfopenf (lua_State *L, lua_Fopen f);
+
+LUA_API void lua_setpopenf (lua_State *L, lua_Popen f);
 
 
 /*

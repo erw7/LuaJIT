@@ -630,6 +630,8 @@ typedef struct StrInternState {
 /* Global state, shared by all threads of a Lua universe. */
 typedef struct global_State {
   lua_Alloc allocf;	/* Memory allocator. */
+  lua_Fopen fopenf;	/* fopen. */
+  lua_Popen popenf;	/* popen. */
   void *allocd;		/* Memory allocator data. */
   GCState gc;		/* Garbage collector. */
   GCstr strempty;	/* Empty string. */

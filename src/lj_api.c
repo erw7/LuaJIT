@@ -1311,3 +1311,14 @@ LUA_API void lua_setallocf(lua_State *L, lua_Alloc f, void *ud)
   g->allocf = f;
 }
 
+LUA_API void lua_setfopenf(lua_State *L, lua_Fopen f)
+{
+  global_State *g = G(L);
+  g->fopenf = f;
+}
+
+LUA_API void lua_setpopenf(lua_State *L, lua_Fopen f)
+{
+  global_State *g = G(L);
+  g->popenf = f;
+}
